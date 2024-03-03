@@ -19,6 +19,7 @@ Features:-
 ==> Delete the image from database
 ==> Like the image and store it in the database
 ==> When click on image its open an modal
+==> Comment section (do it later)
 
 ==> Use daisyUI for styling
 

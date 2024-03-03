@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useUserAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [togglePass, setTogglePass] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,31 +47,48 @@ const SignUp = () => {
         </div>
       )}
       <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-        <h1 className="text-5xl font-bold text-center">Signup</h1>
+        <h1 className="text-4xl py-3 font-bold text-center">Signup</h1>
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-control">
-            <label className="label">
+            <label htmlFor="email" className="label">
               <span className="label-text">Email</span>
             </label>
             <input
               type="email"
               placeholder="email"
               className="input"
+              id="email"
               required
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-control">
-            <label className="label">
+            <label htmlFor="password" className="label">
               <span className="label-text">Password</span>
             </label>
-            <input
-              type="password"
-              placeholder="password"
-              className="input"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="flex items-center">
+              <input
+                type={togglePass ? "text" : "password"}
+                placeholder="password"
+                className="input w-full"
+                id="password"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {togglePass ? (
+                <IoIosEye
+                  className="mx-3"
+                  size={25}
+                  onClick={() => setTogglePass(!togglePass)}
+                />
+              ) : (
+                <IoIosEyeOff
+                  className="mx-3"
+                  size={25}
+                  onClick={() => setTogglePass(!togglePass)}
+                />
+              )}
+            </div>
           </div>
           <div className="form-control mt-6">
             <button className="btn btn-primary" type="submit">
