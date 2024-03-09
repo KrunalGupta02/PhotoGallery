@@ -35,7 +35,7 @@ export const AuthContextProvider = ({ children }) => {
   // This will notify us that user has logged and signedup run only once (authstatechanged is an event)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("user", user);
+      // console.log("user", user);
       setUser(currentUser);
     });
 

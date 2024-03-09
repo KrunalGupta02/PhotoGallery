@@ -5,7 +5,7 @@ import UploadForm from "./UploadForm";
 
 const Main = () => {
   const { user, logOut } = useUserAuth();
-  console.log(user);
+  // console.log(user);
 
   const navigate = useNavigate();
 
