@@ -3,12 +3,15 @@ import { useUserAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [togglePass, setTogglePass] = useState(false);
+  const [resetPasswordSuccess, setResetPasswordSuccess] = useState("");
 
   const navigate = useNavigate();
 
@@ -37,8 +40,24 @@ const Login = () => {
     }
   };
 
+  const handleForgotPass = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setResetPasswordSuccess("Forgot email is send to your email address");
+        console.log(email);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
+      {resetPasswordSuccess && (
+        <div role="alert" className="alert alert-info absolute top-0">
+          <span>{resetPasswordSuccess}</span>
+        </div>
+      )}
       {error && (
         <div role="alert" className="alert alert-error top-3 absolute">
           <svg
@@ -101,9 +120,12 @@ const Login = () => {
               )}
             </div>
             <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
+              <button
+                className="label-text-alt link link-hover"
+                onClick={handleForgotPass}
+              >
                 Forgot password?
-              </a>
+              </button>
             </label>
           </div>
           <div className="form-control mt-6">

@@ -11,7 +11,7 @@ const Modal = ({ selectedImg, setSelectedImg }) => {
   // Disable scrolling when the modal opens
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    // Re-enable scrolling when the modal is closed
+
     return () => {
       document.body.style.overflow = "auto";
     };

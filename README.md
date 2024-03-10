@@ -22,6 +22,7 @@ Features:-
 <!-- ==> When click on image its open an modal -->
 
 ==> Like the image and store it in the database (like and unlike system) and manage it using context api.
+==> delete by only those who upload the pic
 
 ==> Comment section (do it later)
 ==> Add the customized infinite scrollbar (later)
