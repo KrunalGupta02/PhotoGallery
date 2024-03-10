@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { db, storage } from "../firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  doc,
+  updateDoc,
+  setDoc,
+} from "firebase/firestore";
 import { useUserAuth } from "../context/AuthContext";
 
 const useStorage = () => {
@@ -48,11 +55,27 @@ const useStorage = () => {
 
           const createdAt = serverTimestamp();
 
-          // store this data into firestore db
-          await addDoc(collectionRef, {
+          //================== store this data into firestore db ==================//
+          // const docRef = await addDoc(collectionRef, {
+          //   url: downloadURL,
+          //   createdAt: createdAt,
+          //   email: user.email,
+          // });
+
+          // // Get the ID of the document
+          // const docId = docRef.id;
+
+          // // Update the document with the document ID
+          // await updateDoc(docRef, {
+          //   docId: docId,
+          // });
+
+          // This will add the same id as document id to the id
+          await setDoc(doc(collectionRef, fileId.substring(0, 5)), {
             url: downloadURL,
             createdAt: createdAt,
             email: user.email,
+            id: fileId.substring(0, 5),
           });
         } catch (e) {
           console.log("error", e);

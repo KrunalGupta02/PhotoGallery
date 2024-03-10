@@ -18,10 +18,10 @@ Features:-
 
 <!-- ==> Upload Image with progress bar -->
 <!-- ==> Fetch all images with name and date -->
+<!-- ==> Delete the image from database -->
+<!-- ==> When click on image its open an modal -->
 
-==> Delete the image from database
 ==> Like the image and store it in the database (like and unlike system) and manage it using context api.
-==> When click on image its open an modal
 
 ==> Comment section (do it later)
 ==> Add the customized infinite scrollbar (later)

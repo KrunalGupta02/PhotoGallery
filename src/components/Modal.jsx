@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Modal = ({ selectedImg, setSelectedImg }) => {
   // If clicking anything outside it will close the modal
@@ -7,6 +7,16 @@ const Modal = ({ selectedImg, setSelectedImg }) => {
       setSelectedImg(null);
     }
   };
+
+  // Disable scrolling when the modal opens
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    // Re-enable scrolling when the modal is closed
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div className="backdrop" onClick={handleClick}>
       <img src={selectedImg} alt="enlarged pic" />;
