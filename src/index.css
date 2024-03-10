@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
 .custum-file-upload {
   height: 200px;
   width: 300px;
@@ -45,7 +52,8 @@
   display: none;
 }
 
-/* upload .upload */
+/* upload button */
+
 .upload {
   --border-radius: 15px;
   --border-width: 4px;
@@ -118,6 +126,7 @@
 }
 
 /* scrollbar css */
+
 ::-webkit-scrollbar {
   width: 2px;
   height: 2px;
@@ -150,4 +159,26 @@
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+/* Modal Css */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+.backdrop img {
+  display: block;
+  max-width: 60%;
+  max-height: 80%;
+  margin: 60px auto;
+  box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
+  border: 3px solid white;
+  position: relative;
+  z-index: 3;
 }

@@ -6,24 +6,30 @@ Pages:-
 
 ==> Home Page
 
+==> Modal Open
+
 Features:-
 
-==> Authentication from Firebase
+<!-- ==> Authentication from Firebase -->
 
-==> Use Context API for state management
+<!-- ==> Use Context API for state management -->
 
-==> Protected Routes for authentication
+<!-- ==> Protected Routes for authentication -->
 
-==> Upload Image with progress bar
-==> Fetch all images with name and date
+<!-- ==> Upload Image with progress bar -->
+<!-- ==> Fetch all images with name and date -->
+
 ==> Delete the image from database
-==> Like the image and store it in the database
+==> Like the image and store it in the database (like and unlike system) and manage it using context api.
 ==> When click on image its open an modal
+
 ==> Comment section (do it later)
+==> Add the customized infinite scrollbar (later)
+==> Add to album like liked , private etc (later)
 
 ==> Use daisyUI for styling
 
-==> In firebase use the auth,storage & firestore to implement this functionality.
+<!-- ==> In firebase use the auth,storage & firestore to implement this functionality. -->
 
 ==> Auth Page
 

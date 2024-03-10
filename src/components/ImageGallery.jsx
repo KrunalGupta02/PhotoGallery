@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import useFirestore from "../hooks/useFirestore";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Modal from "./Modal";
 
 const ImageGallery = () => {
   const { docs, isLoading } = useFirestore();
   //   console.log(docs, "docs");
+
+  const [selectedImg, setSelectedImg] = useState(null);
 
   if (isLoading) {
     return (
@@ -25,30 +29,47 @@ const ImageGallery = () => {
     );
   }
 
+  const handleDelete = () => {};
+
   return (
-    <div className="grid md:grid-cols-3 m-5 gap-4 mt-10">
-      {docs.map((data, index) => (
-        <div
-          className="card card-compact w-full bg-base-100 shadow-xl rounded-none border border-white"
-          key={index}
-        >
-          <figure className="">
-            <img
-              src={data.url}
-              alt="image"
-              className="cursor-pointer max-h-52 w-full hover:scale-95 transition-all duration-75"
-            />
-          </figure>
-          <div className="card-body">
-            <p>Upload By : {data.email}</p>
-            <p>
-              Created At:{" "}
-              {new Date(data.createdAt?.seconds * 1000).toLocaleString()}
-            </p>
+    <>
+      <div className="grid md:grid-cols-3 m-5 gap-4 mt-10">
+        {docs.map((data, index) => (
+          <div
+            className="card card-compact relative w-full bg-base-100 shadow-xl rounded-none border border-white"
+            key={index}
+          >
+            <figure onClick={() => setSelectedImg(data.url)}>
+              <img
+                src={data.url}
+                alt={data.name}
+                className="cursor-pointer max-h-52 w-full hover:scale-95 transition-all duration-75"
+              />
+              <button className="absolute top-3 right-3 bg-white p-1.5 rounded-full">
+                <RiDeleteBin6Line
+                  size={20}
+                  className="hover:text-red-600 text-black"
+                  onClick={handleDelete}
+                />
+              </button>
+            </figure>
+
+            <div className="card-body">
+              <p>Upload By : {data.email}</p>
+              <p>
+                Created At:{" "}
+                {new Date(data.createdAt?.seconds * 1000).toLocaleString()}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+
+      {/* Modal */}
+      {selectedImg && (
+        <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+      )}
+    </>
   );
 };
 
